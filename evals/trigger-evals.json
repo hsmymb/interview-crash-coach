@@ -1,0 +1,22 @@
+[
+  {"query": "明天下午技术面，这是 JD 和简历，给我做一个能直接看的中文冲刺包", "should_trigger": true},
+  {"query": "距离 Java 后端实习面试只有两小时，按简历项目和岗位要求帮我突击", "should_trigger": true},
+  {"query": "根据这份数据分析岗位 JD 预测技术问题并给出参考答案", "should_trigger": true},
+  {"query": "用我的简历做一次中文项目深挖模拟面试，一次问一道题", "should_trigger": true},
+  {"query": "复盘这段面试转写，评分并安排最后九十分钟补救", "should_trigger": true},
+  {"query": "我不会 JD 里的 Neo4j，明天面试，直接教我最可能被问的内容", "should_trigger": true},
+  {"query": "帮我审计简历里性能提升 40% 这句话会被怎么追问", "should_trigger": true},
+  {"query": "面试官上一轮质疑了我的 RAG 指标，下一轮该怎么准备", "should_trigger": true},
+  {"query": "给我做 SQL 技术面基线小测，然后按错误补课和复测", "should_trigger": true},
+  {"query": "I have a technical internship interview tomorrow; compare this resume with the JD and build a crash pack", "should_trigger": true},
+  {"query": "把这份 Word 简历改成更好看的两栏排版", "should_trigger": false},
+  {"query": "只分析这份招聘 JD 有没有加班和薪资风险", "should_trigger": false},
+  {"query": "帮我写一封投递该公司的英文求职信", "should_trigger": false},
+  {"query": "将这张截图里的文字提取出来", "should_trigger": false},
+  {"query": "给我规划三个月从零学习机器学习的路线", "should_trigger": false},
+  {"query": "比较两份 offer 的薪资、股权和通勤成本", "should_trigger": false},
+  {"query": "帮招聘团队设计结构化面试评分表", "should_trigger": false},
+  {"query": "解释一下什么是 PageRank", "should_trigger": false},
+  {"query": "把我的简历翻译成英文，不需要岗位分析", "should_trigger": false},
+  {"query": "在 GitHub 上找一份前端面试题仓库", "should_trigger": false}
+]

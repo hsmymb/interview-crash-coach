@@ -2,83 +2,109 @@
 
 ## Contents
 
-1. Question construction
-2. Static question pack
-3. Live mock
-4. Scoring
-5. Feedback and remediation
+1. Round-aware question construction
+2. Static question pack and answer depth
+3. Baseline, mock, and coaching modes
+4. Adaptive follow-ups
+5. Scoring and error log
+6. Feedback, retry, and remediation
 
-## 1. Question construction
+## 1. Round-aware question construction
 
-Construct questions from four pools:
+Derive questions from these sources in priority order:
 
-1. **Resume deep dive (40–55%)**: prominent projects, numeric claims, architecture, contribution, failures, tradeoffs.
-2. **JD core knowledge (30–40%)**: role-defining requirements and priority gaps.
-3. **Applied design or coding (10–20%)**: system design, debugging, query, algorithm, experiment, or case analysis appropriate to the role.
-4. **Motivation and boundary (5–10%)**: why the role, learning gap, honest handling of unfamiliar topics.
+1. Verified feedback or unresolved concerns from earlier rounds.
+2. Prominent resume claims, numbers, architecture, and personal contribution.
+3. Role-defining JD responsibilities and P0/P1 gaps.
+4. Applied design, coding, query, experiment, or case work appropriate to the role.
+5. Motivation, company/role understanding, and honest boundary handling.
 
-Adjust the mix to the stated format. For an internship technical interview with no coding round, favor project deep dives and applied concepts.
+Adjust the mix by round:
 
-Apply a hard size limit:
+| Round | Emphasis |
+|---|---|
+| Recruiter or HR screen | Motivation, timeline, logistics, concise fit, obvious risks |
+| Technical screen | Core fundamentals, project evidence, short applied tasks |
+| Project deep dive | Ownership, data flow, metrics, decisions, failures, scaling |
+| Coding or SQL | Clarification, reasoning, correctness, complexity, edge cases |
+| System or case | Constraints, decomposition, tradeoffs, failure handling, communication |
+| Final or panel | Cross-functional judgment, consistency, values, unresolved reservations |
+
+For an internship technical interview without a coding round, usually allocate 40–55% to resume/project deep dives, 30–40% to JD core knowledge, 10–20% to applied design or analysis, and 5–10% to motivation and boundaries.
+
+Apply hard size limits:
 
 | Available time | Must answer | Likely | Stretch |
 |---|---:|---:|---:|
-| ≤3 hours | 6–8 | ≤4 | 0 |
-| 4–6 hours | ≤10 | ≤6 | ≤2 |
-| 1–2 days | ≤12 | ≤8 | ≤4 |
+| Up to 3 hours | 6–8 | up to 4 | 0 |
+| 4–6 hours | up to 10 | up to 6 | up to 2 |
+| 1–2 days | up to 12 | up to 8 | up to 4 |
 
-If more questions are plausible, rank and omit them. A short pack that is rehearsed beats a comprehensive pack that is merely read.
+Rank and omit excess questions. Do not generate trivia disconnected from the work.
 
-For each question, record privately or in a static pack:
+## 2. Static question pack and answer depth
+
+Group questions as must-answer, likely, and stretch. For every must-answer question record:
 
 - why it is likely;
-- evidence source in JD or resume;
-- expected concepts;
-- two follow-ups;
-- red flags;
-- concise answer structure.
+- JD, resume, or feedback trace;
+- question type;
+- expected concepts or evidence;
+- a suitable reference answer or evidence-bound structure;
+- two realistic follow-ups;
+- red flags.
 
-Do not create trivia that is disconnected from the work.
+Apply the answer policy from [teaching-and-answering.md](teaching-and-answering.md):
 
-## 2. Static question pack
+- technical knowledge → complete reference answer;
+- system/case → worked framework and tradeoffs;
+- coding/SQL → representative solution and reasoning;
+- project/behavioral → evidence-bound structure with placeholders;
+- metrics → six-part audit;
+- unfamiliar topic → honest bridge.
 
-Group questions by probability:
+Likely questions may use a shorter reference focus. Stretch questions can be question-only when the relevant learning chapter already contains sufficient depth.
 
-- **Must answer**: direct resume claims and job-defining topics.
-- **Likely**: adjacent fundamentals and design tradeoffs.
-- **Stretch**: deeper topics or preferred qualifications.
+## 3. Baseline, mock, and coaching modes
 
-For each must-answer question, provide an answer skeleton rather than a fabricated full answer:
+### Baseline probe
 
-`Conclusion → context → mechanism/action → metric/evidence → tradeoff or limitation`
+Use two to five short questions before deep teaching when time allows. Cover the highest-risk knowledge topic, top project, one metric, and one boundary. Do not score the candidate as interview-ready from resume evidence alone.
 
-Mark facts the candidate must fill in. Never fill sample sizes, personal ownership, baselines, or production details without evidence.
+### Strict mock
 
-Keep likely and stretch questions to the question plus one-line focus. Do not provide full tutorials inside the question pack; point back to the relevant learning card.
+Set the role, round, duration, and feedback timing. Ask one question at a time and wait. Do not coach or reveal ideal answers until the mock segment ends.
 
-## 3. Live mock
+### Coaching mode
 
-Start with a brief interviewer frame: role, round, expected duration, and feedback timing.
+After the first failed attempt:
 
-Then:
+1. identify the missing concept without giving the final wording;
+2. provide one small hint or a short teaching correction;
+3. ask the candidate to answer again;
+4. later ask a related variant without assistance;
+5. score independent and coached attempts separately.
 
-1. Ask one question and wait.
-2. Choose the next move from the answer:
-   - vague answer → ask for a concrete example;
-   - numeric claim → ask for definition, baseline, and measurement;
-   - architecture claim → ask for data flow, failure path, and alternative;
-   - correct but shallow → ask “why” or a scaling variant;
-   - incorrect → test adjacent fundamentals once, then move on;
-   - honest unknown → ask how the candidate would reason or learn.
-3. Avoid coaching during the mock unless the user requests coaching mode.
-4. Keep questions realistic and professional, not adversarial theater.
-5. Stop when the scheduled time expires or the evidence is sufficient to identify the top three weaknesses.
+Use coaching mode by request or during a crash-pack rehearsal. Do not confuse coached performance with independent readiness.
 
-In coaching mode, give a short hint after the first failed attempt and ask the candidate to retry. Score the final independent attempt separately from the coached attempt.
+## 4. Adaptive follow-ups
 
-## 4. Scoring
+Choose the next move from the answer:
 
-Score each answer from 0–4 on five dimensions:
+- vague claim → request a concrete example and personal action;
+- numeric claim → ask definition, baseline, sample/window, and measurement;
+- architecture claim → ask data flow, failure path, observability, and alternative;
+- correct but shallow → ask why, tradeoff, or a scale variant;
+- technically wrong → test one adjacent fundamental, then teach or move on;
+- honest unknown → ask for reasoning and first validation steps;
+- memorized answer → change the scenario or constraint;
+- strong answer → probe an edge case, limitation, or rejected alternative.
+
+Keep the tone professional and realistic. Stop when time expires or evidence is sufficient to identify the top weaknesses.
+
+## 5. Scoring and error log
+
+Score each independent answer from 0–4:
 
 | Dimension | 0 | 2 | 4 |
 |---|---|---|---|
@@ -86,36 +112,34 @@ Score each answer from 0–4 on five dimensions:
 | Depth | Slogan only | Explains mechanism | Handles tradeoffs and edge cases |
 | Evidence | Unsupported | General example | Specific, attributable evidence |
 | Structure | Hard to follow | Understandable | Conclusion-first and concise |
-| Boundaries | Bluffs | Admits gaps | States limits and a sound approach |
+| Boundaries | Bluffs | Admits a gap | States limits and a sound approach |
 
-Convert to 100 only for the session summary. Keep per-question notes more useful than the number.
+Not every dimension applies equally. For pure knowledge questions, do not penalize the absence of personal evidence. For project questions, evidence and attribution are essential.
 
-Penalize heavily for fabricated ownership, metrics, or experience. Do not penalize an honest unknown as harshly as confident misinformation.
+Convert scores to 100 only for a session summary. Per-question notes are more valuable than a single number. Penalize fabricated ownership, metrics, or experience more heavily than an honest unknown.
 
 Maintain an error log:
 
-| Question | Error type | Missing concept/evidence | Repair task | Minutes |
-|---|---|---|---|---:|
+| Question | Attempt | Error type | Missing concept/evidence | Repair task | Minutes | Retry result |
+|---|---:|---|---|---|---:|---|
 
 Use error types: knowledge, project evidence, reasoning, communication, or boundary handling.
 
-## 5. Feedback and remediation
+## 6. Feedback, retry, and remediation
 
-After the mock, deliver:
+After a strict mock, provide:
 
 1. Interviewer verdict in two or three sentences.
 2. Three strongest signals.
 3. Three highest-risk signals.
-4. Question-level corrections without rewriting the candidate into someone else.
-5. A remediation schedule that fits the time remaining.
-6. A second-round focus list.
+4. Question-level corrections.
+5. A remediation schedule that fits the remaining time.
+6. A variant retry set focused on the same underlying skills.
 
-Rewrite only one or two representative answers. Ask the candidate to produce the rest using the pattern, then rescore.
+Use this repair loop:
 
-If less than one hour remains, prioritize:
+`identify error → teach the missing unit → candidate retries → ask a variant → rescore independent transfer`
 
-- correcting dangerous misconceptions;
-- defining resume metrics;
-- stabilizing the self-introduction and top project;
-- rehearsing honest gap language;
-- one final rapid mock.
+Rewrite only representative personal answers. Let the candidate fill and retry the rest so facts remain theirs.
+
+If less than one hour remains, prioritize dangerous misconceptions, metric definitions, the top project's ownership and architecture, self-introduction, honest gap language, and one rapid variant round.
