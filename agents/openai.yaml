@@ -1,0 +1,4 @@
+interface:
+  display_name: "Interview Crash Coach"
+  short_description: "JD-to-resume cram plans and realistic mock interviews"
+  default_prompt: "Use $interview-crash-coach to compare my resume with this JD and build a time-boxed Chinese technical interview cram plan."
