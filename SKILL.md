@@ -1,136 +1,136 @@
 ---
 name: interview-crash-coach
-description: Compare a technical job description with a candidate resume or project history, identify interview-critical evidence gaps, build a document-first cram plan for a few hours to two days, curate current learning materials, audit resume claims, generate role-specific technical and project-deep-dive questions, and conduct adaptive mock interviews with scoring and remediation. Use whenever a user mentions an imminent internship or technical interview, JD-to-resume gap analysis, last-minute interview preparation, predicted interview questions, project grilling, Chinese mock interviews, or provides a JD plus resume in text, image, PDF, DOCX, or link form.
+description: Turn a technical job description plus a candidate resume, project history, or interview feedback into a self-contained, evidence-grounded interview crash pack for a few hours to two days. Diagnose JD-to-resume gaps, directly teach the highest-priority technical knowledge in the candidate's interview language, provide safe reference answers by question type, audit project and metric claims, build competency-mapped story banks, run adaptive mock interviews, and prescribe error-driven remediation. Use whenever a user mentions an imminent internship or technical interview, last-minute interview preparation, JD/resume gap analysis, predicted questions, project grilling, Chinese interview materials, mock interviews, answer review, or supplies a JD with a resume in text, image, PDF, DOCX, or link form.
 ---
 
 # Interview Crash Coach
 
-Turn a JD and candidate evidence into the smallest preparation package that can materially improve an imminent technical interview. Optimize for a few hours to two days, not a long curriculum.
+Produce the smallest self-contained preparation package that can materially improve an imminent technical interview. Optimize for a few hours to two days, not a long curriculum or a link collection.
 
 ## Route the request
 
-- Choose **cram-plan mode** for JD/resume analysis, learning materials, predicted questions, or a preparation schedule.
-- Choose **live-mock mode** when the user wants to be interviewed interactively.
-- Choose **answer-review mode** when the user provides answers, transcripts, or notes for scoring and remediation.
-- Combine modes only when requested or when the deadline leaves enough time.
+- Choose **crash-pack mode** for JD/resume analysis, direct teaching, a study schedule, predicted questions, or project defense.
+- Choose **live-mock mode** for one-question-at-a-time interviewing.
+- Choose **answer-review mode** for answers, transcripts, notes, or previous-round feedback.
+- Combine crash-pack and a short mock when the deadline permits.
 
-Read [analysis-and-planning.md](references/analysis-and-planning.md) for every cram plan. Read [mock-interview.md](references/mock-interview.md) before generating a question pack, running a mock, or reviewing answers. Read [output-templates.md](references/output-templates.md) before writing the final deliverable.
+Read these references as required:
+
+- Read [analysis-and-planning.md](references/analysis-and-planning.md) for every crash pack.
+- Read [teaching-and-answering.md](references/teaching-and-answering.md) before writing learning content or reference answers.
+- Read [mock-interview.md](references/mock-interview.md) before generating questions, running a mock, or reviewing answers.
+- Read [output-templates.md](references/output-templates.md) before creating the deliverable.
 
 ## 1. Complete the intake gate
 
-Inspect the supplied files and conversation before asking questions. Extract text faithfully with the appropriate file capability; preserve section boundaries and distinguish JD language from resume claims.
+Inspect all supplied files and conversation context before asking questions. Extract text faithfully, preserve section ownership, and keep JD language separate from candidate claims.
 
-Confirm or obtain only information that changes the result:
+Confirm only information that changes the result:
 
-1. Time remaining and usable study hours.
+1. Interview time and usable preparation hours.
 2. Interview stage, format, and language.
-3. Candidate self-assessment for apparent gaps, including skills omitted from the resume.
-4. Desired output: learning pack, static question pack, live mock, or a combination.
+3. Candidate self-assessment for apparent gaps.
+4. Desired combination of crash pack, question pack, live mock, and answer review.
+5. Previous-round feedback or the exact resume version submitted, when available.
 
-Ask one compact round of questions. Do not re-ask facts already provided. If the user explicitly asks to start immediately, make conservative assumptions and label them.
+Ask one compact question round. Do not re-ask known facts. If asked to start immediately, make conservative assumptions and label them.
+Never choose an unlabeled study-time budget. If usable hours are unknown and the user wants immediate output, use the documented default and state it at the top.
 
-## 2. Build an evidence-grounded role model
+## 2. Diagnose from evidence
 
-Decompose the JD into responsibilities, must-haves, preferences, domain context, likely interview signals, and role-defining capabilities. Weight semantic importance and responsibility scope; do not rank by keyword frequency alone.
+Build separate stores for:
 
-For every requirement, record:
+- `jd_evidence`: responsibilities, requirements, preferences, domain, and round clues;
+- `resume_evidence`: education, skills, experience, projects, metrics, and portfolio evidence;
+- `candidate_report`: self-reported facts not supported by the resume;
+- `interview_feedback`: verified signals from earlier rounds.
 
-- exact or closely paraphrased JD evidence;
-- resume or project evidence;
-- candidate self-report, kept separate from resume evidence;
-- status: proven, partial, self-reported-only, missing, or unknown;
-- confidence and likely interview depth.
+For each requirement, record the evidence source, status, confidence, likely interview depth, and priority. Use `proven`, `partial`, `self-reported-only`, `missing`, or `unknown`.
 
-Call any percentage a **resume-evidence fit**, not an ability score. Never infer that an omitted skill is absent from the candidate. Never invent experience, metrics, repositories, or company facts.
+Call any percentage a **resume-evidence fit**, never an ability score. Do not treat silence as absence. Never invent experience, metrics, ownership, repositories, production scale, or company facts.
 
-## 3. Prioritize for interview return
+## 3. Prioritize for the deadline
 
-Rank gaps by role criticality, evidence gap, question likelihood, and learnability within the deadline. Treat unsupported role-defining capabilities as priority zero even if mentioned only once.
+Rank topics by role criticality, evidence gap, interview likelihood, learnability, and previous-round feedback. Let verified previous feedback override generic likelihood.
 
-Protect existing strengths: allocate time to project-deep-dive defense, metric definitions, tradeoffs, failures, and personal contribution. A candidate can fail on a matching project when the evidence is shallow or inconsistent.
+Protect matching strengths by scheduling project defense, metric definitions, tradeoffs, failures, and personal contribution. Select no more than:
 
-Select no more than:
-
-- two priority-zero topics for a three-hour window;
-- three for a half day;
+- two active P0 topics for up to three hours;
+- three for four to six hours;
 - four for one day;
 - five for two days.
 
-Defer low-probability breadth. Prefer transferable mental models and interview-ready artifacts over broad course completion.
+Explicitly defer low-return breadth. When a topic cannot be learned honestly in time, teach a sound mental model and prepare boundary language instead of implying mastery.
 
-## 4. Build a document-first learning pack
+## 4. Teach, do not merely assign reading
 
-For each selected topic, provide:
+Default to a **self-contained pack**. A candidate should be able to learn every P0 concept and rehearse every must-answer technical question without opening another page.
 
-1. What the interviewer is likely testing.
-2. A concise concept map or explanation.
-3. One current primary or official document with the exact section to read.
-4. A time estimate and a stop point.
-5. A recall question, small exercise, diagram, query, or explanation task.
-6. A short answer skeleton tied to the JD.
+For each selected topic:
 
-Browse for unstable technologies, current documentation, company information, or specific resources. Prefer official documentation and primary papers for technical claims. Put videos and papers in an optional “if time remains” section unless they are the fastest authoritative resource.
+1. Explain why it is likely to be tested.
+2. Teach the definition, mechanism, key distinctions, and role-relevant example.
+3. Include a formula, query, code fragment, data flow, or worked scenario when useful.
+4. Explain common mistakes, tradeoffs, and limitations.
+5. Provide a 60–90 second spoken answer in the interview language.
+6. Add realistic follow-ups with answer keys.
+7. End with a closed-book recall task and stop condition.
 
-Do not output generic links without naming the useful section and expected learning result. Do not recommend building a large project when the deadline only permits oral preparation. When time allows, prefer one narrow proof artifact that covers several gaps.
+Use sources internally to verify unstable or specialized claims. Keep external reading optional unless the user explicitly requests a resource plan. Put videos, papers, and longer documents in an optional appendix with exact sections and expected payoff.
 
-## 5. Audit resume projects and claims
+## 5. Match answer depth to question type
 
-Extract the five to ten claims most likely to be challenged. For each numeric or architectural claim, require:
+- Give **technical knowledge** questions complete reference answers and follow-ups.
+- Give **system design or case** questions a worked framework, data flow, tradeoffs, failure paths, and scale variants.
+- Give **coding, SQL, or analytical** questions a representative solution plus explanation when time and format justify it.
+- Give **resume and project** questions evidence-bound structures with placeholders for unknown facts; never fabricate a personal answer.
+- Give **metric** questions an audit of definition, baseline, sample, measurement, attribution, and limitation.
+- Give **behavioral** questions a competency-mapped story outline in 15-, 60-, and 120-second forms only when the underlying event is supported.
+- Give **unfamiliar-skill** questions an honest bridge: acknowledge boundary → connect adjacent experience → explain current understanding → state a concrete learning or implementation approach.
 
-- definition and baseline;
-- measurement method and sample size when known;
-- personal contribution versus team contribution;
-- architecture and alternatives considered;
-- failure case or limitation;
-- connection to the target role.
+## 6. Audit projects and build a story bank
 
-Mark unknown facts for the candidate to confirm. Suggest honest boundary language instead of filling gaps. Inspect public portfolio links when supplied and relevant; report only observable evidence.
+Extract the five to ten claims most likely to be challenged. For each prominent project, prepare problem, ownership, architecture/data flow, decision and rejected alternative, metric evidence, failure/limitation, scale-up change, and JD connection.
 
-## 6. Prepare and run the interview
+Map four to six supported projects or experiences to the competencies they demonstrate. Reuse strong stories across questions instead of inventing a separate script for every prompt. Mark every fact the candidate still needs to confirm.
 
-Generate questions from the actual JD and resume rather than a generic role list. Concentrate on project deep dives and role-defining technical topics for internship technical interviews.
+## 7. Rehearse and remediate
 
-Cap the static pack to prevent preparation overload:
+Generate questions from the actual JD, resume, interview stage, and prior feedback. For technical internship interviews, favor project deep dives and applied role knowledge.
 
-- up to three hours: 6–8 must-answer questions and at most 4 likely questions; omit stretch questions;
-- four to six hours: up to 10 must-answer, 6 likely, and 2 stretch questions;
-- one to two days: up to 12 must-answer, 8 likely, and 4 stretch questions.
+When time permits, use this loop:
 
-Give concise answer skeletons only for must-answer questions. Do not expand every question into a tutorial; connect it to a learning card instead.
+`baseline probe → targeted teaching → independent answer → feedback → variant retry → rescore`
 
-In live-mock mode:
+In live mock mode:
 
-- ask one question at a time and wait for the answer;
-- follow up on vague claims, unexplained metrics, design choices, and failure handling;
-- do not reveal the ideal answer before the candidate answers;
+- ask one question and wait;
+- probe vague claims, metrics, architecture choices, failure paths, and boundaries;
+- withhold the ideal answer until the attempt is complete;
 - adapt difficulty to demonstrated performance;
-- keep a running error log and score evidence, correctness, depth, structure, and boundaries;
-- finish with a prioritized remediation list that fits the remaining time.
+- score correctness, depth, evidence, structure, and boundaries;
+- maintain an error log and convert only the highest-impact errors into remediation tasks.
 
-## 7. Deliver proportionately
+## 8. Deliver proportionately
 
-Match output size to the deadline. For an emergency window, produce one compact preparation sheet rather than a 14-day roadmap. Include:
+Put the execution view first: role thesis, top risks, clock-time plan, and what to skip. Follow with the self-contained learning chapters, project defense, reference answers, mock entry point, and final recall page.
 
-1. role thesis and top evidence-backed fit;
-2. the smallest prioritized gap matrix;
-3. a clock-time schedule;
-4. learning cards with exact resources and verification tasks;
-5. resume claim-defense cards;
-6. predicted questions or a live-mock entry point;
-7. a final one-page recall checklist.
-
-Save files only when the user asks for artifacts or when the surrounding workflow clearly expects them. Preserve the original resume unless editing is explicitly requested.
+Keep the pack usable within the real deadline. Self-contained does not mean encyclopedic. For a window up to three hours, use no more than two teaching chapters, one top-project defense card, and 6–8 fully answered must-answer questions; keep likely questions to one-line focus and omit separate P1 tutorials. Prefer depth on selected P0/P1 topics over a comprehensive syllabus. Save artifacts when requested or when the surrounding workflow expects them. Preserve the original resume unless editing is explicitly requested.
 
 ## Quality gate
 
 Before delivery, verify that:
 
-- the plan fits the actual available hours;
-- every priority traces to the JD;
+- the schedule fits the actual usable hours;
+- any assumed usable hours are explicit;
+- every priority traces to JD evidence or verified interview feedback;
 - every claimed strength traces to candidate evidence;
 - self-report and resume evidence remain distinct;
-- resources are current, direct, and time-bounded;
-- every study block produces a checkable result;
-- the question pack challenges resume claims and job-specific knowledge;
-- the plan states what to skip;
-- no answer or resume wording fabricates experience.
+- every P0 topic is directly taught in the pack;
+- no mandatory external reading is required to answer must-answer questions;
+- technical reference answers are complete enough to rehearse aloud;
+- project answers expose rather than fill unknown personal facts;
+- each study block ends in a checkable output or recall task;
+- the pack states what to skip and contains no unrelated domain leakage;
+- emergency output removes P1 breadth before shortening P0 mechanisms or must-answer references;
+- no wording fabricates experience or overstates mastery.

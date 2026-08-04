@@ -1,6 +1,6 @@
 # Interview Crash Coach
 
-> 根据真实岗位 JD、个人简历与自我评估，生成数小时到两天内可执行的技术面试冲刺计划，并支持自适应模拟面试。
+> 根据真实岗位 JD、个人简历与自我评估，生成数小时到两天内可直接学习的自包含技术面试冲刺包，并支持自适应模拟与错误驱动补救。
 
 `interview-crash-coach` 是一个面向 Codex 的可复用 Skill。它不试图生成一份面面俱到的长期学习路线，而是回答一个更现实的问题：
 
@@ -80,34 +80,44 @@ Skill 会将 JD 拆分为：
 
 ```text
 优先级信号 =
-  0.40 × 岗位关键性
+  0.35 × 岗位关键性
 + 0.25 × 证据缺口
-+ 0.20 × 面试出现概率
++ 0.20 × 本轮出现概率
 + 0.15 × 短期可学习性
++ 0.05 × 历轮反馈信号
 ```
 
 这个公式用于约束判断，不用于制造虚假的精确分数。以下语义规则拥有更高优先级：
 
 - 岗位核心职责所依赖、但候选人没有证据的能力，直接提升为 P0；
+- 上一轮已经暴露的问题，优先级高于通用题库概率；
 - 无法在剩余时间内真正掌握的主题，改为准备原理、处理思路和诚实边界；
 - 简历中醒目的数字、架构和成果，即使属于优势，也必须进入项目防守；
 - 多个缺口能通过同一张图、一个查询或一个小练习覆盖时，合并学习。
 
-### 3. 文档优先的冲刺学习卡
+### 3. 自包含式冲刺教学
 
-每个入选主题都会生成一张时间受限的学习卡：
+每个入选主题都会生成一章可直接学习的中文内容：
 
 1. 为什么面试官可能问；
-2. 必须理解的 3–5 个概念；
-3. 当前官方文档或原始资料中应阅读的具体章节；
-4. 阅读时间和停止条件；
-5. 闭卷复述、查询、图示或小练习；
-6. 与 JD 相关的面试回答骨架；
-7. 时间富余时再看的视频或论文。
+2. 一句话定义、机制和关键区别；
+3. 与岗位相关的例子、查询、代码、公式或数据流；
+4. 常见错误、取舍和工程限制；
+5. 60–90 秒中文口述答案；
+6. 两层高概率追问及参考答案；
+7. 闭卷验证任务与明确通过条件。
 
-Skill 不会只丢出一个泛泛的课程链接，也不会推荐一门比剩余准备时间还长的课程。
+P0 内容默认不依赖外部阅读。官方文档、论文和视频用于内部核验或放入“时间富余再看”的可选附录。
 
-### 4. 简历项目与数字声明防守
+### 4. 按题型控制答案深度
+
+- 技术知识题给完整参考答案；
+- 系统设计和场景题给约束、数据流、取舍与失败路径；
+- SQL、编码和分析题给代表性解法与推理；
+- 项目题、指标题和行为题只使用真实证据，并显式保留待确认字段；
+- 不熟悉的技术使用“承认边界—关联经验—说明理解—给出落地方案”的诚实桥接。
+
+### 5. 简历项目与数字声明防守
 
 对最可能被追问的项目和成果，Skill 会要求候选人确认：
 
@@ -122,7 +132,7 @@ Skill 不会只丢出一个泛泛的课程链接，也不会推荐一门比剩�
 
 这部分的目标不是把答案包装得更华丽，而是避免在追问中出现前后矛盾。
 
-### 5. 自适应模拟面试
+### 6. 自适应模拟面试
 
 模拟面试不是一次性生成题库。Skill 会：
 
@@ -132,6 +142,7 @@ Skill 不会只丢出一个泛泛的课程链接，也不会推荐一门比剩�
 - 对架构追问数据流、失败路径和替代方案；
 - 根据回答质量动态调整难度；
 - 记录知识、证据、推理、表达和边界处理错误；
+- 使用“基线测试—教学—独立作答—变式重试—重新评分”的闭环；
 - 最后把暴露的问题转换为剩余时间内可执行的补救计划。
 
 ## 工作原理
@@ -143,26 +154,27 @@ flowchart LR
     C["候选人自我评估"] --> D
     D --> E["岗位能力模型"]
     E --> F["P0 / P1 / P2 / Skip"]
-    F --> G["冲刺学习卡"]
+    F --> G["自包含教学"]
     F --> H["项目防守卡"]
-    G --> I["题目与模拟面试"]
+    G --> I["独立回答与变式重试"]
     H --> I
     I --> J["错误日志与补救计划"]
 ```
 
-整个流程坚持三个独立证据源：
+整个流程坚持四个独立证据源：
 
 | 证据源 | 内容 | 用途 |
 |---|---|---|
 | `jd_evidence` | JD 的职责、要求、偏好和领域背景 | 判断岗位真正要交付什么 |
 | `resume_evidence` | 简历、项目、课程、指标和作品链接 | 判断面试中可直接主张什么 |
 | `candidate_report` | 候选人口述但简历未体现的信息 | 调整学习时间，不自动升级为简历证据 |
+| `interview_feedback` | 已验证的历轮反馈和未解决问题 | 调整本轮优先级，优先于通用问题概率 |
 
 ## 三种工作模式
 
-### Cram-plan：冲刺计划
+### Crash-pack：自包含冲刺包
 
-适用于：JD/简历差距分析、学习资料、复习日程、预测题和最终速记页。
+适用于：JD/简历差距分析、直接教学、复习日程、预测题、项目防守和最终速记页。
 
 示例：
 
@@ -170,8 +182,8 @@ flowchart LR
 $interview-crash-coach
 
 这是岗位 JD 和我的简历。距离中文技术面试还有 6 小时。
-请先区分简历证据和我的自我评估，再生成文档优先的冲刺计划、
-项目防守卡、必答问题和最后 15 分钟复习页。
+请先区分简历证据和我的自我评估，再生成自包含中文冲刺包。
+P0 知识要直接讲解，并给技术题完整参考答案、项目防守卡和最后 15 分钟复习页。
 ```
 
 ### Live-mock：实时模拟面试
@@ -200,7 +212,7 @@ $interview-crash-coach 使用 answer-review 模式分析下面的面试记录。
 找出三个最高风险点，并给出 90 分钟补救计划。
 ```
 
-三种模式可以组合，但在只剩几个小时的情况下，建议先完成冲刺计划，再进行一次短模拟。
+三种模式可以组合；在只剩几个小时的情况下，建议先完成 P0 教学和项目防守，再进行一次短模拟与变式重试。
 
 ## 安装
 
@@ -335,17 +347,18 @@ $interview-crash-coach
 
 ### 钟表时间计划
 
-| 时间 | 任务 | 资料与章节 | 必须产出 | 停止条件 |
+| 时间 | 任务 | 必须产出 | 通过/停止条件 |
 |---|---|---|---|---|
 
-### 学习卡
+### 自包含教学章节
 
-- 面试目的；
-- 必须理解的概念；
-- 官方资料具体章节；
-- 闭卷验证任务；
-- 回答骨架；
-- 时间富余资源。
+- 面试目的和 JD 依据；
+- 定义、机制、关键区别和岗位例子；
+- 代码、查询、公式、图或场景推演；
+- 取舍、限制和常见错误；
+- 60–90 秒中文回答；
+- 追问参考答案和闭卷验证任务；
+- 可选的外部深度资料。
 
 ### 项目防守卡
 
@@ -356,11 +369,18 @@ $interview-crash-coach
 - 取舍和失败案例；
 - 与 JD 的连接。
 
+### 能力—故事矩阵
+
+- 用 4–6 个真实经历覆盖技术深度、问题解决、协作和失败复盘；
+- 每个故事准备 15 秒、60 秒和 120 秒版本；
+- 明确事实待确认项和不可声称的内容。
+
 ### 面试题与速记页
 
 - Must answer：必须稳定回答；
 - Likely：高概率邻接问题；
 - Stretch：时间充足时再准备；
+- 技术题提供完整参考答案，个人经历题保留证据边界；
 - 最后 15 分钟复习清单；
 - 明确跳过的低回报主题。
 
@@ -379,8 +399,8 @@ $interview-crash-coach
 
 | 档位 | 重点 |
 |---|---|
-| ≤3 小时 | 两个关键缺口、项目与指标防守、快速题目回忆、短模拟 |
-| 4–6 小时 | 2–3 张 P0 学习卡、项目深挖、题目演练、一次模拟 |
+| ≤3 小时 | 最多两章 P0 教学、一个项目防守、6–8 道完整必答题、短复测 |
+| 4–6 小时 | 2–3 章 P0 教学、项目深挖、题目演练、一次模拟与变式重试 |
 | 6–10 小时 | 3–4 个主题、一个小型证明产物、系统化项目防守 |
 | 12–20 小时 | 分两天学习、制作窄范围产物、两次模拟和错误驱动复习 |
 
@@ -453,19 +473,28 @@ interview-crash-coach/
 ├── README.md
 ├── agents/
 │   └── openai.yaml
-└── references/
-    ├── analysis-and-planning.md
-    ├── mock-interview.md
-    └── output-templates.md
+├── references/
+│   ├── analysis-and-planning.md
+│   ├── teaching-and-answering.md
+│   ├── mock-interview.md
+│   └── output-templates.md
+├── scripts/
+│   └── validate_skill.py
+└── evals/
+    ├── trigger-evals.json
+    └── forward-cases.json
 ```
 
 | 文件 | 作用 |
 |---|---|
 | `SKILL.md` | 触发条件、主流程、硬约束和质量检查 |
 | `agents/openai.yaml` | Codex UI 展示名称、简介和默认提示词 |
-| `references/analysis-and-planning.md` | 证据矩阵、优先级、时间档位和泛化规则 |
-| `references/mock-interview.md` | 出题比例、动态追问、评分和错误修复协议 |
-| `references/output-templates.md` | 紧急冲刺、完整学习包、速记页和答案复盘模板 |
+| `references/analysis-and-planning.md` | 证据矩阵、教学深度、时间预算和诊断—教学—演练流程 |
+| `references/teaching-and-answering.md` | 自包含教学章节、题型答案策略和证据边界 |
+| `references/mock-interview.md` | 轮次化出题、动态追问、评分、重试和错误修复协议 |
+| `references/output-templates.md` | 自包含冲刺包、教学章节、项目防守和答案复盘模板 |
+| `scripts/validate_skill.py` | UTF-8、必需文件、核心规则和主文件长度检查 |
+| `evals/` | 触发测试及 NLP、Java 后端、数据分析跨岗位回归样例 |
 
 ## 定制与二次开发
 
@@ -489,6 +518,16 @@ references/mock-interview.md
 
 可以调整项目深挖比例、题型分布、评分维度和是否允许 coaching mode。
 
+### 调整教学和答案策略
+
+编辑：
+
+```text
+references/teaching-and-answering.md
+```
+
+可以调整教学章节组成、不同题型的答案深度、口述答案长度和证据占位符规则。
+
 ### 调整交付格式
 
 编辑：
@@ -511,7 +550,7 @@ references/output-templates.md
 
 ## 验证
 
-项目使用 Codex 内置 `skill-creator` 的快速校验器检查 Skill 结构：
+项目使用两层自动检查：Codex 内置 `skill-creator` 校验标准结构，仓库脚本校验 UTF-8、必需文件、核心 V2 规则和主文件长度。
 
 ```powershell
 $codexRoot = if ($env:CODEX_HOME) {
@@ -521,20 +560,24 @@ $codexRoot = if ($env:CODEX_HOME) {
 }
 
 python (Join-Path $codexRoot 'skills\.system\skill-creator\scripts\quick_validate.py') .
+python scripts/validate_skill.py .
 ```
 
-当前版本已通过：
+通过时分别输出：
 
 ```text
 Skill is valid!
+Skill content validation passed.
 ```
 
-除结构校验外，设计阶段还使用了与原始 NLP 案例不同的后端岗位样例进行泛化测试，以检查：
+仓库还保存三组去隐私化回归样例：NLP/图风控一日冲刺、Java 后端两小时冲刺和数据分析一日冲刺，用来检查：
 
 - 是否会把 NLP/图谱主题错误带入无关岗位；
 - 是否能根据 Java、JVM、数据库和缓存要求重新构建课程；
 - 是否能在两小时窗口内主动压缩题目数量；
-- 是否会审计简历中的性能数字和个人贡献。
+- 是否会审计简历中的性能数字和个人贡献；
+- P0 内容能否脱离外部链接直接学习；
+- 技术题是否有完整答案，同时不替候选人编造项目事实。
 
 ## 局限与边界
 
@@ -550,9 +593,13 @@ Skill is valid!
 
 这个项目在设计阶段调研并借鉴了以下社区项目的思路：
 
-- [MadsLorentzen/ai-job-search](https://github.com/MadsLorentzen/ai-job-search)：`upskill` 工作流中的岗位差距热力图、学习资源和时间估计；
-- [Paramchoudhary/ResumeSkills](https://github.com/Paramchoudhary/ResumeSkills)：JD 分析、简历证据和面试准备的组合思路；
-- [onewave-ai/claude-skills](https://github.com/onewave-ai/claude-skills)：`job-application-optimizer` 的求职材料优化视角。
+- [ai-job-search interview workflow](https://github.com/MadsLorentzen/ai-job-search/blob/master/.claude/commands/interview.md)：实际投递材料一致性、轮次化准备、历轮反馈优先和诚实缺口桥接；
+- [ai-job-search upskill](https://github.com/MadsLorentzen/ai-job-search/blob/master/.claude/skills/upskill/SKILL.md)：缺口来源、优先级热力图和学习顺序；
+- [ResumeSkills JD Analyzer](https://github.com/Paramchoudhary/ResumeSkills/blob/main/skills/job-description-analyzer/SKILL.md)：must-have、nice-to-have 与证据差距拆分；
+- [ResumeSkills Interview Prep](https://github.com/Paramchoudhary/ResumeSkills/blob/main/skills/interview-prep-generator/SKILL.md)：STAR 故事、问题映射和多长度回答；
+- [PM Interview Prep Skill](https://github.com/mohitagw15856/pm-claude-skills/tree/main/skills/interview-prep)：轮次能力、故事矩阵和 gaps/landmines；
+- [GitHub Technical Job Search](https://github.com/github/awesome-copilot/tree/main/skills/technical-job-search)：岗位真实问题、必备/加分要求和克制输出；
+- [Tech Interview Handbook](https://github.com/yangshun/tech-interview-handbook)：直接可读的精炼技术面试内容，而不是链接集合。
 
 `interview-crash-coach` 在这些方向上进一步聚焦：
 
@@ -560,6 +607,8 @@ Skill is valid!
 - JD、简历与候选人口述的证据分离；
 - 岗位关键性优先于关键词频率；
 - 简历项目、数字和个人贡献防守；
+- P0 技术知识在冲刺包内直接教学，外部资料默认可选；
+- 技术题给完整参考答案，个人项目题保持证据边界；
 - 一问一答式自适应模拟面试；
 - 根据错误日志生成剩余时间内的补救计划；
 - 跨技术岗位泛化，而不是绑定单一 NLP 案例。

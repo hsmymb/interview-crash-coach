@@ -1,0 +1,47 @@
+[
+  {
+    "id": "nlp_graph_risk_one_day",
+    "time": "8 hours",
+    "language": "Chinese",
+    "jd_focus": ["RAG document extraction", "AI Agent orchestration", "Neo4j/Cypher", "graph risk propagation", "SQL"],
+    "candidate_evidence": ["RAG project", "prompt engineering", "NLP basics", "Python", "SQL coursework"],
+    "candidate_report": ["Neo4j and graph algorithms are unfamiliar"],
+    "acceptance": [
+      "P0 content is directly taught in Chinese",
+      "technical questions have complete reference answers",
+      "Neo4j examples do not become fabricated project experience",
+      "no mandatory external reading",
+      "plan fits one day"
+    ]
+  },
+  {
+    "id": "java_backend_two_hours",
+    "time": "2 hours",
+    "language": "Chinese",
+    "jd_focus": ["Java", "JVM", "MySQL", "Redis", "concurrency"],
+    "candidate_evidence": ["Spring Boot course project", "REST API", "MySQL"],
+    "candidate_report": ["Redis concepts only", "little JVM tuning experience"],
+    "acceptance": [
+      "at most two active P0 topics",
+      "6–8 must-answer questions",
+      "no NLP or graph leakage",
+      "project claims contain placeholders for unknown scale",
+      "includes one independent retry"
+    ]
+  },
+  {
+    "id": "data_analyst_one_day",
+    "time": "8 hours",
+    "language": "Chinese",
+    "jd_focus": ["SQL", "funnel metrics", "A/B testing", "Python", "business interpretation"],
+    "candidate_evidence": ["Pandas analysis project", "dashboard", "basic SQL"],
+    "candidate_report": ["window functions are weak", "A/B testing is unfamiliar"],
+    "acceptance": [
+      "contains worked SQL and metric examples",
+      "teaches experiment assumptions without overstating experience",
+      "project metric audit is evidence-bound",
+      "no backend or NLP leakage",
+      "final recall page is speakable"
+    ]
+  }
+]

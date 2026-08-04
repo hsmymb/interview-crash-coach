@@ -3,53 +3,56 @@
 ## Contents
 
 1. Input normalization
-2. Requirement matrix
-3. Priority calculation
-4. Time-box profiles
-5. Learning cards
-6. Project evidence audit
-7. Generalization rules
+2. Requirement and evidence matrix
+3. Priority and teaching-depth decisions
+4. Time-box and output budgets
+5. Diagnostic-teaching-rehearsal pipeline
+6. Project evidence and story mapping
+7. Source and localization policy
+8. Generalization rules
 
 ## 1. Input normalization
 
-Create three separate evidence stores:
+Maintain four separate stores:
 
-- `jd_evidence`: responsibilities, requirements, preferences, domain, interview format clues.
-- `resume_evidence`: education, skills, experience, projects, metrics, portfolio links.
-- `candidate_report`: skills or constraints stated by the candidate but not supported in the resume.
+- `jd_evidence`: responsibilities, requirements, preferences, domain, and interview clues.
+- `resume_evidence`: education, skills, experience, projects, metrics, and portfolio links.
+- `candidate_report`: candidate-stated skills or constraints absent from the resume.
+- `interview_feedback`: stage, interviewer feedback, failed questions, and unresolved concerns from earlier rounds.
 
-Never silently merge the stores. A self-reported skill may reduce study time, but it does not become resume evidence.
+Never silently merge stores. Self-report may reduce teaching time but does not become resume evidence. Previous-round feedback must be attributable, not inferred.
 
-If a JD is an image, transcribe its headings and bullets before analysis. If a resume has layout-dependent sections, preserve which company, project, role, and date each bullet belongs to.
+For image JDs, transcribe headings and bullets before analysis. For layout-dependent resumes, preserve which role, project, date, and organization owns each bullet. When multiple resume versions exist, prefer the exact version submitted for this application.
 
-## 2. Requirement matrix
+## 2. Requirement and evidence matrix
 
 Represent each meaningful requirement with:
 
 | Field | Meaning |
 |---|---|
 | Requirement | Normalized capability or responsibility |
-| JD evidence | Exact phrase or close paraphrase |
+| JD trace | Exact phrase or close paraphrase |
 | Type | Responsibility, must-have, preferred, domain, logistics |
-| Role criticality | 1–5; 5 defines the job's core output |
+| Role criticality | 1–5; 5 defines the role's core output |
 | Resume evidence | Direct project, work, course, or skill evidence |
 | Candidate report | Relevant self-assessment outside the resume |
+| Prior feedback | Verified signal from an earlier round |
 | Evidence status | Proven, partial, self-reported-only, missing, unknown |
-| Interview likelihood | 1–5 |
+| Interview likelihood | 1–5 for this round |
 | Learnability | 1–5 within the available window |
 | Priority | P0, P1, P2, or skip |
 
-Determine role criticality from responsibilities and dependency structure, not mention counts. Example: a graph database may occur once but define an entire risk-propagation responsibility.
+Determine criticality from responsibilities and dependency structure, not keyword counts. A capability mentioned once may define an entire responsibility.
 
-Use `unknown` when the resume is silent and the candidate has not answered. Do not use `missing` merely because a keyword is absent.
+Use `unknown` when the material is silent. Use `missing` only after confirmation. Label inferred interview likelihood as an inference.
 
-## 3. Priority calculation
+## 3. Priority and teaching-depth decisions
 
-Use this heuristic, not false precision:
+Use this heuristic as a ranking aid, not a pseudo-precise score:
 
-`priority signal = 0.40 × criticality + 0.25 × evidence gap + 0.20 × interview likelihood + 0.15 × learnability`
+`priority signal = 0.35 × criticality + 0.25 × evidence gap + 0.20 × round likelihood + 0.15 × learnability + 0.05 × feedback signal`
 
-Normalize inputs to 1–5. Assign evidence gap approximately as:
+Approximate evidence gap as:
 
 - proven: 1
 - partial: 3
@@ -59,114 +62,141 @@ Normalize inputs to 1–5. Assign evidence gap approximately as:
 
 Override the score when:
 
-- an unsupported capability is necessary to perform a core responsibility → P0;
-- the topic cannot be learned meaningfully in time → prepare boundaries and an approach, not fake mastery;
-- a resume claim is highly prominent or numeric → include claim defense even if it is already a strength;
-- several gaps share one mental model or proof artifact → combine them.
+- verified previous feedback identifies the issue → raise it to P0 or P1;
+- an unsupported capability is necessary for a core responsibility → P0;
+- a prominent numeric or architecture claim is likely to be challenged → include project defense;
+- several gaps share one mental model or exercise → combine them;
+- meaningful mastery is impossible in time → teach the interview-safe minimum and boundaries.
 
-Avoid more than five active learning topics. State the deferred topics explicitly.
+Set teaching depth by evidence status:
 
-## 4. Time-box profiles
+| Status | Default treatment |
+|---|---|
+| Missing or beginner self-report | Definition, mechanism, worked example, pitfalls, spoken answer |
+| Partial | Key distinctions, design choices, follow-ups, applied example |
+| Proven | Claim audit, edge cases, alternatives, scale and failure probes |
+| Unknown | Ask once if it changes priority; otherwise teach conservatively and mark assumption |
+
+Do not carry more than five active learning topics. List deferred topics explicitly.
+
+## 4. Time-box and output budgets
+
+The line budgets are guardrails, not reasons to omit a necessary answer. Count only the main Markdown deliverable.
 
 ### Up to 3 hours: emergency
 
-- 15 min: role thesis and evidence map.
-- 55 min: highest-return P0 topic.
-- 35 min: second P0 topic or boundary answer.
-- 40 min: resume project and metric defense.
-- 20 min: predicted-question rapid recall.
-- 15 min: mini mock and final checklist.
+- 15 min: role thesis, evidence map, and two-question baseline probe.
+- 70 min: one or two P0 teaching chapters.
+- 40 min: top project and metric defense.
+- 25 min: must-answer rehearsal.
+- 20 min: variant retry and final recall.
 
-Do not recommend coding a new project. Produce a single compact sheet.
+Use at most two active P0 topics, 6–8 must-answer questions, and 4 likely questions. Omit stretch questions. Target roughly 150–300 lines. Do not assign a new project.
+
+Use no more than two teaching chapters and one project defense card. Each chapter gets at most one worked example, one spoken answer, and two answered follow-ups. Keep likely questions to question plus one-line focus. If the draft exceeds about 300 lines, remove P1 exposition and likely-question explanations first; preserve P0 mechanisms and must-answer reference answers.
 
 ### 4–6 hours: half day
 
-- 30 min: analysis and self-introduction.
-- 120 min: two or three P0 learning cards.
-- 60 min: project-deep-dive defense.
-- 60 min: role-specific question drills.
-- 45 min: mock interview.
-- 15 min: remediation checklist.
+- 25 min: analysis, self-introduction, and baseline probe.
+- 140 min: two or three P0 teaching chapters.
+- 70 min: project defense and story mapping.
+- 60 min: reference-answer rehearsal.
+- 45 min: mock interview and retry.
+- 20 min: remediation and recall page.
 
-Allow a tiny query, diagram, or code exercise only when it directly improves explanation.
+Use at most three active P0 topics, 10 must-answer, 6 likely, and 2 stretch questions. Target roughly 300–500 lines. Allow a small query, diagram, or code exercise when it improves explanation.
+
+If the draft exceeds the budget, compress repeated definitions and secondary examples before cutting P0 answer keys.
 
 ### 6–10 hours: one day
 
-- 45 min: evidence map and baseline mock.
-- 180 min: three to four P0 topics.
-- 90 min: one narrow proof artifact or system-design diagram.
-- 75 min: resume defense and answer skeletons.
-- 60 min: technical mock.
-- 30 min: error-driven review.
+- 40 min: evidence matrix and baseline mock.
+- 210 min: three or four P0/P1 teaching chapters.
+- 90 min: narrow proof exercise or system-design walkthrough.
+- 90 min: project defense and story bank.
+- 70 min: technical mock, variant retries, and error repair.
+- 30 min: final recall.
+
+Use at most four active topics, 12 must-answer, 8 likely, and 4 stretch questions. Target roughly 500–800 lines.
 
 ### 12–20 hours: two days
 
-Day 1: analyze, learn core gaps, build one narrow proof artifact, and audit resume claims.
+Day 1: diagnose, learn core gaps, build one narrow proof artifact, and audit claims.
 
-Day 2: complete high-frequency topics, rehearse system design, run two adaptive mocks, and patch only observed weaknesses.
+Day 2: complete high-frequency topics, rehearse project and design answers, run two adaptive mocks, and repair only observed weaknesses.
 
-Keep optional videos and papers outside the committed schedule.
+Use at most five active topics. Keep long videos, papers, and optional coding outside the committed schedule.
 
 ### Unknown deadline
 
-Ask before planning. If the user refuses or says “as soon as possible,” default to a four-hour emergency plan and label the assumption.
+Ask once. If the user declines or says “as soon as possible,” default to four usable hours and label the assumption.
 
-## 5. Learning cards
+## 5. Diagnostic-teaching-rehearsal pipeline
 
-Build one card per selected topic:
+### Diagnose
 
-```markdown
-### Topic — time budget
+1. State the role thesis: what this hire is expected to deliver.
+2. Identify the strongest evidence and the deciding risks.
+3. Select the smallest P0/P1 set.
+4. If time permits, ask two to five baseline questions before writing deep remediation.
 
-Why it will be asked: <JD trace>
+### Teach
 
-Must understand:
-- <3–5 concepts>
+Create self-contained chapters using [teaching-and-answering.md](teaching-and-answering.md). Each scheduled block must produce an observable result: spoken explanation, query, code trace, diagram, design walkthrough, or closed-book answer.
 
-Read now:
-- <official/primary resource, exact section, estimated minutes>
+### Rehearse
 
-Produce:
-- <diagram/query/explanation/answer outline>
+1. Ask or present the highest-probability questions.
+2. Test one level deeper than the prepared first answer.
+3. Record knowledge, evidence, reasoning, communication, and boundary errors.
+4. Teach only the highest-impact missing piece.
+5. Ask a related variant without revealing the answer.
+6. Score the independent retry separately.
 
-Verify:
-- <closed-book question or small task>
-
-Interview skeleton:
-- Conclusion → mechanism → project/JD application → tradeoff/boundary
-
-If time remains:
-- <video or paper>
-```
-
-Prefer documentation that can be skimmed selectively. Provide paper abstracts or sections only when the interview is likely to test research depth. Never pad a plan with courses longer than the total time window.
-
-## 6. Project evidence audit
+## 6. Project evidence and story mapping
 
 For each likely deep-dive project, build a defense card:
 
 1. One-sentence problem and user.
-2. Candidate's exact ownership.
+2. Candidate's exact ownership versus team ownership.
 3. Data flow and architecture.
-4. Hardest technical choice and rejected alternative.
-5. Metric definition, baseline, sample, and result.
-6. Failure case and remediation.
-7. What changes at ten times the scale.
-8. Connection to one JD responsibility.
+4. Hardest decision and rejected alternative.
+5. Metric definition, baseline, sample, measurement, and result.
+6. Failure case, limitation, and remediation.
+7. What changes at ten times the data, traffic, or team scale.
+8. Connection to a JD responsibility.
 
-For numeric claims, ask whether the change is absolute or relative and whether the statistic is mean, median, percentile, or an internal sample. Accept an honest limitation; reject invented rigor.
+For numeric claims, distinguish absolute versus relative change and mean, median, percentile, or sampled measurement. Accept honest limitations; reject invented rigor.
 
-## 7. Generalization rules
+Build a story matrix from four to six supported experiences:
 
-Derive the domain curriculum from the JD every time. Do not carry NLP, frontend, data, finance, or graph-specific topics into unrelated roles.
+| Story | Technical depth | Problem solving | Collaboration | Failure/growth | Role relevance | Facts to confirm |
+|---|---:|---:|---:|---:|---:|---|
 
-Reuse only the process:
+Prepare 15-, 60-, and 120-second versions only after the underlying facts are supported. A single strong story may cover several competencies.
 
-- evidence separation;
-- role-critical weighting;
-- time-boxed prioritization;
-- official-source learning cards;
-- claim defense;
-- adaptive mock and remediation.
+## 7. Source and localization policy
 
-For coding-heavy roles, include short implementation drills. For architecture roles, emphasize diagrams and tradeoffs. For analytics roles, include queries, metric definitions, and business interpretation. For research roles, include paper reasoning and experiment design.
+Separate **verification sources** from **candidate-facing delivery**:
+
+- Browse when a technical claim, API, library, company fact, or standard may have changed.
+- Prefer primary documentation and papers for verification.
+- Synthesize the needed content directly in the interview language.
+- Do not make a P0 or must-answer section depend on an external link.
+- Put optional links in an appendix with the exact section, estimated minutes, and reason to read.
+- Preserve important English technical terms in parentheses when that helps recognition in code or documentation.
+- Write spoken answers naturally for the interview language; do not produce literal translated documentation prose.
+
+## 8. Generalization rules
+
+Derive the curriculum from each JD. Do not leak NLP, graph, frontend, finance, data, or backend topics into unrelated roles.
+
+Adapt the proof format:
+
+- coding-heavy role → short implementation, debugging, and complexity drills;
+- architecture role → constraints, diagram, data flow, tradeoffs, and failure paths;
+- analytics role → SQL, metric definitions, assumptions, and business interpretation;
+- ML or research role → data, evaluation, leakage, experiment design, and paper reasoning;
+- product or case role → problem framing, prioritization, metrics, and worked scenarios.
+
+Reuse the process, not a domain syllabus: evidence separation, role-critical prioritization, self-contained teaching, claim defense, typed answers, adaptive rehearsal, and error-driven remediation.

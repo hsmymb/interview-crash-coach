@@ -2,93 +2,185 @@
 
 ## Contents
 
-1. Emergency preparation sheet
-2. Full cram pack
-3. Final recall page
-4. Answer review
+1. Emergency self-contained pack
+2. Full crash pack
+3. Learning chapter
+4. Project defense and story bank
+5. Must-answer question
+6. Final recall page
+7. Answer review
 
-Use the smallest template that satisfies the request. Omit empty sections.
+Use the smallest template that satisfies the deadline. Omit empty sections. Put action and priority before background analysis.
 
-## 1. Emergency preparation sheet
+## 1. Emergency self-contained pack
 
 ```markdown
 # <Role> Interview Crash Pack
 
-## Assumptions
-- Time: <hours>
-- Format/language: <...>
-- Evidence limits: <...>
-
-## Role thesis
-<What the employer is actually hiring this person to deliver>
-
-## Top fit and top risks
-| Priority | Capability | JD trace | Candidate evidence | Action |
-|---|---|---|---|---|
+## Start here
+- Interview/time: <...>
+- Role thesis: <what this hire must deliver>
+- Strongest evidence: <...>
+- Deciding risks: <...>
+- Today’s rule: <what to prioritize and skip>
 
 ## Clock-time plan
-| Time | Task | Resource/section | Required output | Stop condition |
-|---|---|---|---|---|
-
-## Learning cards
-<Only selected P0/P1 cards>
-
-## Resume defense
-| Claim | Likely follow-up | Facts to confirm | Answer structure |
+| Time | Task | Required output | Pass/stop condition |
 |---|---|---|---|
 
+## Priority matrix
+| Priority | Capability | JD/feedback trace | Candidate evidence | Treatment |
+|---|---|---|---|---|
+
+## Self-contained learning
+<Only P0/P1 chapters; no mandatory external reading>
+
+## Top project defense
+<Ownership, architecture, metric, decision, limitation, facts to confirm>
+
 ## Must-answer questions
-<5–12 questions with skeletons>
+<Typed reference answers: full technical answers, evidence-bound personal answers>
+
+## Likely questions
+<Question plus one-line focus only in emergency mode>
 
 ## Final 15-minute recall
-<One-page checklist>
+<One-page speakable checklist>
 
-## Skip
-<Deferred topics and why>
+## Explicitly skip
+<Deferred topics and reason>
+
+## Optional depth
+<Only if useful: exact source section, minutes, payoff>
 ```
 
-## 2. Full cram pack
+## 2. Full crash pack
 
 ```markdown
-# <Role> Technical Interview Cram Plan
+# <Role> Technical Interview Crash Pack
 
-## Executive conclusion
-- Resume-evidence fit: <optional, qualified>
-- Strongest signals: <...>
-- Deciding risks: <...>
-- Strategy: <...>
+## Executive view
+- Assumptions and evidence limits
+- Role thesis
+- Resume-evidence fit, if useful and qualified
+- Strongest signals
+- Deciding risks
+- Preparation strategy
 
 ## Evidence matrix
-| Requirement | Type | Criticality | Resume evidence | Candidate report | Status | Priority |
-|---|---|---:|---|---|---|---|
+| Requirement | Type | Criticality | Resume evidence | Candidate report | Prior feedback | Status | Priority |
+|---|---|---:|---|---|---|---|---|
 
-## Time allocation
-<Clock-time schedule for the actual window>
+## Clock-time plan
+<Schedule for actual usable hours, including recall and retry>
 
-## Learning pack
-<Cards with exact official/primary sources>
+## Baseline probe
+<2–5 questions and observed gaps, when performed>
 
-## Project defense cards
-<Top projects and metric audit>
+## Self-contained learning chapters
+<Direct teaching, spoken answers, follow-ups, recall checks>
+
+## Project defense and story bank
+<Top projects, metric audits, competency mapping, facts to confirm>
 
 ## Predicted question pack
 ### Must answer
 ### Likely
 ### Stretch
 
-## Mock interview plan
-<Duration, mix, rubric, entry question>
+## Mock and retry plan
+<Round, duration, mix, rubric, first question, variant strategy>
 
 ## Final recall page
-<Concise checklist>
+<Concise and speakable>
 
 ## Deferred topics
 <Explicitly skipped>
+
+## Optional sources
+<Exact sections and payoff; never required for must-answer readiness>
 ```
 
-## 3. Final recall page
+## 3. Learning chapter
 
-Keep this page speakable and scan-friendly:
+```markdown
+### <Topic> — <P0/P1, minutes>
+
+**Why this will be asked:** <trace>
+
+**One-sentence definition:** <...>
+
+**How it works**
+1. <...>
+2. <...>
+3. <...>
+
+**Key distinctions**
+| Concept | Difference | When it matters |
+|---|---|---|
+
+**Worked example**
+<query/code/formula/diagram/scenario>
+
+**Tradeoffs and common mistakes**
+- <...>
+
+**60–90 second interview answer**
+<natural spoken answer>
+
+**Follow-ups and reference answers**
+1. <question>
+   - <answer>
+
+**Closed-book check**
+- Task:
+- Pass condition:
+
+**Optional depth**
+- <source, section, minutes, payoff>
+```
+
+## 4. Project defense and story bank
+
+```markdown
+### Project: <name>
+- Problem/user:
+- Verified personal ownership:
+- Team contribution:
+- Architecture/data flow:
+- Key decision and rejected alternative:
+- Metric definition/baseline/sample/measurement:
+- Failure or limitation:
+- Ten-times-scale change:
+- JD connection:
+- Facts to confirm: [explicit placeholders]
+
+### Story versions
+- 15 seconds:
+- 60 seconds:
+- 120 seconds:
+- Competencies covered:
+- Do not claim:
+```
+
+## 5. Must-answer question
+
+```markdown
+### Q: <question>
+- Probability/trace: <...>
+- Type: technical | system/case | coding/SQL | project | metric | behavioral | boundary
+- Interviewer is testing: <...>
+- Reference answer or evidence-bound structure: <...>
+- Follow-up 1: <...>
+  - Reference focus: <...>
+- Follow-up 2: <...>
+  - Reference focus: <...>
+- Red flags: <...>
+```
+
+For project, metric, and behavioral answers, mark unknown candidate facts. For technical questions, provide the complete answer instead of placeholders.
+
+## 6. Final recall page
 
 ```markdown
 # Final Recall
@@ -106,20 +198,20 @@ Keep this page speakable and scan-friendly:
 - Ownership:
 - Architecture:
 - Metric:
-- Tradeoff:
+- Decision/tradeoff:
 - Failure/limitation:
 
 ## Five technical anchors
 - <one-line mechanism or distinction>
 
 ## Honest gap language
-<What is not yet production experience; what has been learned or built>
+<boundary → adjacent experience → understanding → approach>
 
-## Questions for interviewer
-- <2–4 role-specific questions>
+## Questions for the interviewer
+- <2–4 role- and round-specific questions>
 ```
 
-## 4. Answer review
+## 7. Answer review
 
 ```markdown
 # Answer Review
@@ -128,18 +220,19 @@ Keep this page speakable and scan-friendly:
 <Interviewer-style summary>
 
 ## Scores
-| Question | Correctness | Depth | Evidence | Structure | Boundaries | Main issue |
-|---|---:|---:|---:|---:|---:|---|
+| Question | Attempt | Correctness | Depth | Evidence | Structure | Boundaries | Main issue |
+|---|---:|---:|---:|---:|---:|---:|---|
 
 ## Corrections
 ### <Question>
 - What worked:
 - What weakened the answer:
 - Missing concept/evidence:
-- Better structure:
+- Teaching correction:
 - Retry prompt:
+- Variant prompt:
 
-## Time-boxed remediation
-| Minutes | Repair task | Verification |
-|---:|---|---|
+## Error-driven remediation
+| Minutes | Repair task | Output | Verification |
+|---:|---|---|---|
 ```
